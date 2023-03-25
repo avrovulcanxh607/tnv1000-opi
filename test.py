@@ -14,7 +14,8 @@ GPIO.output(12, GPIO.LOW)
 
 spi=spidev.SpiDev()
 spi.open(1,0)
-spi.max_speed_hz=7800000
+#spi.max_speed_hz=7800000
+spi.max_speed_hz=122000
 
 time.sleep(1)
 

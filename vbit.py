@@ -47,12 +47,12 @@ if countdown<1:
 GPIO_FLD=7 #define GPIO_FLD 3 -> Broadcom 22
 GPIO_CSN=12 #define GPIO_CSN 5 -> Broadcom 24
 #GPIO_MUX=25 #define GPIO_MUX 6 -> Broadcom 25
-GPIO_LED=11 #define GPIO_LED 7 -> Broadcom 4
+GPIO_LED=22 #define GPIO_LED 7 -> Broadcom 4
 
 # setup the I/O to VBIT
 GPIO.setup(GPIO_LED, GPIO.OUT)
 GPIO.setup(GPIO_FLD, GPIO.IN)
-#GPIO.setup(18, GPIO.OUT)
+GPIO.setup(10, GPIO.OUT)
 #GPIO.setup(24, GPIO.OUT)
 
 #GPIO.output(24, GPIO.LOW)
@@ -96,10 +96,10 @@ try:
   # This thread will be used to read the input stream into a field buffer
   while True:
 
-    #if bus.read_byte_data(0x20,0x10)&1 != 0:
-    #  GPIO.output(18, GPIO.HIGH)
-    #else:
-    #  GPIO.output(18, GPIO.LOW)
+    if bus.read_byte_data(0x20,0x10)&1 != 0:
+      GPIO.output(10, GPIO.HIGH)
+    else:
+      GPIO.output(10, GPIO.LOW)
 
     ###### Wait while the buffers are full ######
     while (head+1)%BUFFERS == tail:
